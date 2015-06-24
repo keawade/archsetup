@@ -5,6 +5,7 @@
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
+ORANGE='\033[0;33m'
 NC='\033[0m' # No Color
 
 echo "Welcome to Arch!"
@@ -20,3 +21,39 @@ else
   echo "[${RED}FAILED${NC}] Please check your network connection"
   exit 0
 fi
+
+# Prepare storage devices
+lsblk
+echo "Please select the disk you wish to install to (a, b, c, etc): "
+read drive
+echo "/dev/sd${drive} selected:"
+lsblk /dev/sd${drive}
+
+read -r -p "\n[${ORANGE}WARNING${NC}] The contents of /dev/sd${drive} will be erased! Continue? [y/N] " response
+case $response in
+  [yY][eE][sS]|[yY]) 
+    
+    ;;
+  *)
+    exit 0
+    ;;
+esac
+
+echo "What partition table do you want to use?"
+echo "  1) GPT"
+echo "  2) MSDOS"
+echo "  1) /dev/sd${drive}1 > /"
+echo "  2) /dev/sd${drive}1 > /boot"
+echo "  1) /dev/sd${drive}1 > /boot"
+echo "  1) /dev/sd${drive}1 > /boot"
+echo "  1) /dev/sd${drive}1 > /boot"
+echo "  1) /dev/sd${drive}1 > /boot"
+echo "  1) /dev/sd${drive}1 > /boot"
+echo "  1) /dev/sd${drive}1 > /boot"
+echo "  1) /dev/sd${drive}1 > /boot"
+echo "  1) /dev/sd${drive}1 > /boot"
+read -r -p ""
+
+
+# chroot
+pacman -S wget --noconfirm
