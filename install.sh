@@ -40,20 +40,18 @@ case $response in
 esac
 
 echo "What partition table do you want to use?"
-echo "  1) GPT"
-echo "  2) MSDOS"
-echo "  1) /dev/sd${drive}1 > /"
-echo "  2) /dev/sd${drive}1 > /boot"
-echo "  1) /dev/sd${drive}1 > /boot"
-echo "  1) /dev/sd${drive}1 > /boot"
-echo "  1) /dev/sd${drive}1 > /boot"
-echo "  1) /dev/sd${drive}1 > /boot"
-echo "  1) /dev/sd${drive}1 > /boot"
-echo "  1) /dev/sd${drive}1 > /boot"
-echo "  1) /dev/sd${drive}1 > /boot"
-echo "  1) /dev/sd${drive}1 > /boot"
-read -r -p ""
-
+echo "  a) GPT"
+echo "  b) MSDOS"
+read response
+case $response in
+  [aA]|[bB])
+    
+    ;;
+  *)
+    echo "Invalid input. Exiting"
+    exit 0
+    ;;
+esac
 
 # chroot
 pacman -S wget --noconfirm
