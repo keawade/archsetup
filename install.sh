@@ -22,36 +22,9 @@ else
   exit 0
 fi
 
-# Prepare storage devices
-lsblk
-echo "Please select the disk you wish to install to (a, b, c, etc): "
-read drive
-echo "/dev/sd${drive} selected:"
-lsblk /dev/sd${drive}
+# Confirm partitioning
+read -r -p "Have you configured your partitions and mounted them? [y/N] "
 
-read -r -p "\n[${ORANGE}WARNING${NC}] The contents of /dev/sd${drive} will be erased! Continue? [y/N] " response
-case $response in
-  [yY][eE][sS]|[yY]) 
-    
-    ;;
-  *)
-    exit 0
-    ;;
-esac
-
-echo "What partition table do you want to use?"
-echo "  a) GPT"
-echo "  b) MSDOS"
-read response
-case $response in
-  [aA]|[bB])
-    
-    ;;
-  *)
-    echo "Invalid input. Exiting"
-    exit 0
-    ;;
-esac
 
 # chroot
 pacman -S wget --noconfirm
